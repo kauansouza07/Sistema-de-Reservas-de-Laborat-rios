@@ -1,0 +1,27 @@
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import java.util.List;
+
+@Entity
+public class Laboratory {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotBlank
+    @Size(max = 255)
+    private String name;
+
+    @NotBlank
+    private String location;
+
+    @NotNull
+    private Integer capacity;
+
+    @OneToMany(mappedBy = "laboratory", cascade = CascadeType.ALL)
+    private List<Reservation> reservations;
+
+    // Getters and Setters
+}
